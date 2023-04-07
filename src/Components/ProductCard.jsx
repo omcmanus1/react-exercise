@@ -14,6 +14,7 @@ import { BasketContext } from "../contexts/basket";
 export default function ProductCard({ product }) {
   const [itemAdded, setItemAdded] = useState(false);
   const [basket, setBasket] = useContext(BasketContext);
+  console.log(basket);
 
   const handleAddToCart = () => {
     setBasket([...basket, product.id]);
@@ -31,7 +32,7 @@ export default function ProductCard({ product }) {
         <CardHeader
           className="product-image"
           title={product.title}
-          subheader={`£${product.price}`}
+          subheader={`£${product.price.toFixed(2)}`}
         />
         <CardMedia
           className="product-image"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import {
   Button,
@@ -9,8 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function ProductCard({ product, basket, setBasket }) {
+import { BasketContext } from "../contexts/basket";
+
+export default function ProductCard({ product }) {
   const [itemAdded, setItemAdded] = useState(false);
+  const [basket, setBasket] = useContext(BasketContext);
 
   const handleAddToCart = () => {
     setBasket([...basket, product.id]);

@@ -14,7 +14,20 @@
   margin: 1vw;
 }
 
+h1 {
+  padding: 2vh;
+}
 
+.products-container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.product-card {
+  justify-content: space-between;
+  padding: 1vh;
+  margin: 0.5vh;
+}
 
 /* .App {
   text-align: center;

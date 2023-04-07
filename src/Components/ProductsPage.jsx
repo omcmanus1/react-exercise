@@ -24,9 +24,9 @@ export default function ProductsPage() {
   if (isLoading) return <h2>Loading...</h2>;
 
   return (
-    <>
+    <div className="products-container">
       <h1>ALL PRODUCTS</h1>
       {buildProductCard()}
-    </>
+    </div>
   );
 }

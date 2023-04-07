@@ -1,4 +1,22 @@
+* {
+  vertical-align: baseline;
+  align-content: center;
+  background-color: #F3F2F3;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1vw;
+}
+
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +53,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

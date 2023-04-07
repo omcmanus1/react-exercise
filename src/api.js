@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const fakeApi = axios.create({
   baseURL: "https://fakestoreapi.com/products",
@@ -6,6 +6,6 @@ const fakeApi = axios.create({
 
 export const fetchProducts = () => {
   return fakeApi.get().then((res) => {
-    console.log(res.data)
-  })
-}
+    return res.data;
+  });
+};

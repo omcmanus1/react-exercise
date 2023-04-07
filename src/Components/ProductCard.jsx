@@ -9,11 +9,18 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, basket, setBasket }) {
   const [itemAdded, setItemAdded] = useState(false);
-  console.log(itemAdded);
 
-  const handleButtonClick = () => setItemAdded(!itemAdded);
+  const handleAddToCart = () => {
+    setBasket([...basket, product.id]);
+    setItemAdded(!itemAdded);
+  };
+
+  const handleRemoveFromCart = () => {
+    setBasket(basket.filter((item) => item !== product.id));
+    setItemAdded(!itemAdded);
+  };
 
   return (
     <Card className="product-card" raised={true}>
@@ -49,7 +56,7 @@ export default function ProductCard({ product }) {
           <Button
             variant="contained"
             sx={{ backgroundColor: "darkred" }}
-            onClick={handleButtonClick}
+            onClick={handleRemoveFromCart}
           >
             Remove From Cart
           </Button>
@@ -57,7 +64,7 @@ export default function ProductCard({ product }) {
           <Button
             variant="contained"
             sx={{ backgroundColor: "darkgreen" }}
-            onClick={handleButtonClick}
+            onClick={handleAddToCart}
           >
             Add To Cart
           </Button>

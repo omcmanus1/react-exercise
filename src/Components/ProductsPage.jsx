@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import ProductCard from "./ProductCard";
 import { fetchProducts } from "../api";
 
-export default function ProductsPage() {
+export default function ProductsPage({ basket, setBasket }) {
   const [isLoading, setIsLoading] = useState(false);
   const [productsArr, setProductsArr] = useState([]);
 
@@ -18,7 +18,14 @@ export default function ProductsPage() {
 
   const buildProductCard = () => {
     return productsArr.map((product) => {
-      return <ProductCard key={product.id} product={product} />;
+      return (
+        <ProductCard
+          key={product.id}
+          product={product}
+          basket={basket}
+          setBasket={setBasket}
+        />
+      );
     });
   };
 

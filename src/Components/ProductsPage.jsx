@@ -22,7 +22,7 @@ export default function ProductsPage() {
     });
   };
 
-  if (isLoading) return <h2>Loading...</h2>;
+  if (isLoading) return <Typography variant="h3">Loading...</Typography>;
 
   return (
     <div className="products-container">

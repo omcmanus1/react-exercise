@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Typography } from "@mui/material";
 
 import ProductCard from "./ProductCard";
 import { fetchProducts } from "../api";
@@ -25,7 +26,7 @@ export default function ProductsPage() {
 
   return (
     <div className="products-container">
-      <h1>ALL PRODUCTS</h1>
+      <Typography variant="h2">ALL PRODUCTS</Typography>
       {buildProductCard()}
     </div>
   );

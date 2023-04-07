@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import ProductCard from "./ProductCard";
 import { fetchProducts } from "../api";
 
 export default function ProductsPage() {
@@ -16,8 +17,7 @@ export default function ProductsPage() {
 
   const buildProductCard = () => {
     return productsArr.map((product) => {
-      console.log(product);
-      return <p key={product.id}>{product.title}</p>;
+      return <ProductCard key={product.id} product={product} />;
     });
   };
 

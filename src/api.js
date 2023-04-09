@@ -4,8 +4,11 @@ const fakeApi = axios.create({
   baseURL: "https://fakestoreapi.com/products",
 });
 
-export const fetchProducts = () => {
-  return fakeApi.get().then((res) => {
-    return res.data;
-  });
-};
+export default async function fetchProducts() {
+  try {
+    let response = await fakeApi.get();
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+}

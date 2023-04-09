@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 
 import ProductCard from "./ProductCard";
-import { fetchProducts } from "../api";
+import fetchProducts from "../api";
 
 export default function ProductsPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,10 +10,16 @@ export default function ProductsPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchProducts().then((products) => {
-      setProductsArr(products);
-      setIsLoading(false);
-    });
+    const callApi = async () => {
+      try {
+        const products = await fetchProducts();
+        setProductsArr(products);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    callApi();
   }, []);
 
   const buildProductCard = () => {

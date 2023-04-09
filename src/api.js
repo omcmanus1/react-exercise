@@ -6,7 +6,7 @@ const fakeApi = axios.create({
 
 export default async function fetchProducts() {
   try {
-    let response = await fakeApi.get();
+    const response = await fakeApi.get();
     return response.data;
   } catch (err) {
     console.log(err);

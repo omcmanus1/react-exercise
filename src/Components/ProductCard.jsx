@@ -13,6 +13,7 @@ import CartButtons from "./CartButtons";
 export default function ProductCard({ product }) {
   const [itemAdded, setItemAdded] = useState(false);
   const [basket, setBasket] = useContext(BasketContext);
+  console.log(basket);
 
   const addItem = () => {
     setItemAdded(true);
@@ -20,16 +21,6 @@ export default function ProductCard({ product }) {
 
   const removeItem = () => {
     setItemAdded(false);
-  };
-
-  const handleAddToCart = () => {
-    setBasket([...basket, product.id]);
-    addItem();
-  };
-
-  const handleRemoveFromCart = () => {
-    setBasket(basket.filter((item) => item !== product.id));
-    removeItem();
   };
 
   return (
@@ -56,9 +47,11 @@ export default function ProductCard({ product }) {
         </Typography>
         <CartButtons
           itemAdded={itemAdded}
-          setItemAdded={setItemAdded}
-          handleAddToCart={handleAddToCart}
-          handleRemoveFromCart={handleRemoveFromCart}
+          addItem={addItem}
+          removeItem={removeItem}
+          basket={basket}
+          setBasket={setBasket}
+          product={product}
         />
       </CardContent>
     </Card>

@@ -13,7 +13,6 @@ import CartButtons from "./CartButtons";
 export default function ProductCard({ product }) {
   const [itemAdded, setItemAdded] = useState(false);
   const [basket, setBasket] = useContext(BasketContext);
-  console.log(basket);
 
   const addItem = () => {
     setItemAdded(true);

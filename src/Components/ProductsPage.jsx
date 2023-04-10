@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Typography, Alert } from "@mui/material";
+import { Typography, Alert, CircularProgress } from "@mui/material";
 
 import ProductCard from "./ProductCard";
 import fetchProducts from "../api";
@@ -31,7 +31,12 @@ export default function ProductsPage() {
   };
 
   // MUI progress component?? Look into
-  if (isLoading) return <Typography variant="h3">Loading...</Typography>;
+  if (isLoading)
+    return (
+      <div className="products-container">
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <div className="products-container">

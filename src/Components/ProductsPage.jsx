@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
+import { Typography, Alert } from "@mui/material";
 
 import ProductCard from "./ProductCard";
 import fetchProducts from "../api";
 
 export default function ProductsPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [productsArr, setProductsArr] = useState([]);
 
-  useEffect(() => {
+  const callApi = async () => {
     setIsLoading(true);
-    const callApi = async () => {
-      try {
-        const products = await fetchProducts();
-        setProductsArr(products);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    try {
+      const products = await fetchProducts();
+      setProductsArr(products);
+      setIsLoading(false);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  useEffect(() => {
     callApi();
   }, []);
 
@@ -28,12 +30,19 @@ export default function ProductsPage() {
     });
   };
 
+  // MUI progress component?? Look into
   if (isLoading) return <Typography variant="h3">Loading...</Typography>;
 
   return (
     <div className="products-container">
-      <Typography variant="h2">ALL PRODUCTS</Typography>
-      {buildProductCard()}
+      <Typography variant="h2" sx={{ textTransform: "uppercase" }}>
+        All Products
+      </Typography>
+      {error ? (
+        <Alert severity="error">Error Fetching Data!!</Alert>
+      ) : (
+        buildProductCard()
+      )}
     </div>
   );
 }

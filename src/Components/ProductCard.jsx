@@ -11,9 +11,10 @@ import {
 import { BasketContext } from "../contexts/basket";
 
 export default function ProductCard({ product }) {
+  // pass setItemAdded to Basket, but as pre-defined methods?
+  // e.g. addItem()
   const [itemAdded, setItemAdded] = useState(false);
   const [basket, setBasket] = useContext(BasketContext);
-  console.log(basket);
 
   const handleAddToCart = () => {
     setBasket([...basket, product.id]);
@@ -55,9 +56,12 @@ export default function ProductCard({ product }) {
         >
           {product.description}
         </Typography>
+        {/* potentially pass ternary into Button component */}
         {itemAdded ? (
           <Button
             variant="contained"
+            // replace with hex code??
+            // MUI success/error colour??
             sx={{ backgroundColor: "darkred" }}
             onClick={handleRemoveFromCart}
           >

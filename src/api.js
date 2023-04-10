@@ -9,6 +9,6 @@ export default async function fetchProducts() {
     const response = await fakeApi.get();
     return response.data;
   } catch (err) {
-    console.log(err);
+    return err;
   }
 }

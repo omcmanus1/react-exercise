@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
@@ -9,26 +8,33 @@ import {
 } from "@mui/material";
 
 import { BasketContext } from "../contexts/basket";
+import CartButtons from "./CartButtons";
 
 export default function ProductCard({ product }) {
-  // pass setItemAdded to Basket, but as pre-defined methods?
-  // e.g. addItem()
   const [itemAdded, setItemAdded] = useState(false);
   const [basket, setBasket] = useContext(BasketContext);
 
+  const addItem = () => {
+    setItemAdded(true);
+  };
+
+  const removeItem = () => {
+    setItemAdded(false);
+  };
+
   const handleAddToCart = () => {
     setBasket([...basket, product.id]);
-    setItemAdded(!itemAdded);
+    addItem();
   };
 
   const handleRemoveFromCart = () => {
     setBasket(basket.filter((item) => item !== product.id));
-    setItemAdded(!itemAdded);
+    removeItem();
   };
 
   return (
     <Card className="product-card" raised={true}>
-      <CardContent sx={{ alignContent: "center", justifyContent: "center" }}>
+      <CardContent>
         <CardHeader
           className="product-image"
           title={product.title}
@@ -39,44 +45,32 @@ export default function ProductCard({ product }) {
           component="img"
           image={product.image}
           alt={product.title}
-          sx={{ height: 140, objectFit: "contain", padding: 2 }}
+          sx={styles.cardImage}
         />
         <Typography variant="body1">Category: {product.category}</Typography>
         <Typography variant="body1">
           Rating: {product.rating.rate} ({product.rating.count} votes)
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            paddingTop: 2,
-            paddingBottom: 2,
-            paddingLeft: 5,
-            paddingRight: 5,
-          }}
-        >
+        <Typography variant="body2" sx={styles.description}>
           {product.description}
         </Typography>
-        {/* potentially pass ternary into Button component */}
-        {itemAdded ? (
-          <Button
-            variant="contained"
-            // replace with hex code??
-            // MUI success/error colour??
-            sx={{ backgroundColor: "darkred" }}
-            onClick={handleRemoveFromCart}
-          >
-            Remove From Cart
-          </Button>
-        ) : (
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "darkgreen" }}
-            onClick={handleAddToCart}
-          >
-            Add To Cart
-          </Button>
-        )}
+        <CartButtons
+          itemAdded={itemAdded}
+          setItemAdded={setItemAdded}
+          handleAddToCart={handleAddToCart}
+          handleRemoveFromCart={handleRemoveFromCart}
+        />
       </CardContent>
     </Card>
   );
 }
+
+const styles = {
+  description: {
+    paddingTop: 2,
+    paddingBottom: 2,
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+  cardImage: { height: 140, objectFit: "contain", padding: 2 },
+};

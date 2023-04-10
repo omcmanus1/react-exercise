@@ -30,7 +30,6 @@ export default function ProductsPage() {
     });
   };
 
-  // MUI progress component?? Look into
   if (isLoading)
     return (
       <div className="products-container">
